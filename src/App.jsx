@@ -5,7 +5,7 @@ import "./App.css";
 
 function App() {
   const [valorIzq, setValorIzq] = useState(0);
-  const [info, setInfo] = useState();
+  const [info, setInfo] = useState("");
   const [cVi, setcVi] = useState(0);
   const [cNi, setcNi] = useState(0);
   const [eVi, seteVi] = useState(0);
@@ -53,45 +53,15 @@ function App() {
     const doc = new jsPDF();
 
     // Establece una variable para la posición inicial en Y
-    let posY = 10; // Inicia en 10
+    let posY = 50; // Inicia en 10
 
     // Agrega texto a PDF
     doc.text(`Nombre: ${nombre}`, 10, posY);
     posY += 10;
 
-    doc.text(`Fecha: ${fecha}`, 10, posY);
-    posY += 10;
-
-    doc.text(`Miopia/Hipermetropia Antes (Ojo Izquierdo): ${eVi}`, 10, posY);
-    posY += 10;
-
-
-    doc.text(`Astigmatismo Antes (Ojo Izquierdo): ${cVi}`, 10, posY);
-    posY += 10;
-
-    doc.text(`Miopia/Hipermetropia Ahora (Ojo Izquierdo): ${eNi}`, 10, posY);
-    posY += 10;
-
-    doc.text(`Astigmatismo Ahora (Ojo Izquierdo): ${cNi}`, 10, posY);
-    posY += 10;
-
-    doc.text(`Miopia/Hipermetropia Antes (Ojo Derecho): ${eVDer}`, 10, posY);
-    posY += 10;
-
-    doc.text(`Astigmatismo Antes (Ojo Derecho): ${cVDer}`, 10, posY);
-    posY += 10;
-
-    doc.text(`Miopia/Hipermetropia Ahora (Ojo Derecho): ${eNDer}`, 10, posY);
-    posY += 10;
-
-    doc.text(`Astigmatismo Ahora (Ojo Derecho): ${cNDer}`, 10, posY);
-    posY += 10;
-
-
-    doc.text(`Su ojo derecho cambio un ${valorDer}%`, 10, posY);
-    posY += 10;
-    doc.text(`Su ojo izquierdo cambio un ${valorIzq}%`, 10, posY);
-    posY += 10;
+    const Texto = doc.splitTextToSize(`Derivado de la valoración visual realizada ${fecha}, concluimos que el cambio en tu visión es del siguiente porcentaje: OD:${valorDer}% y OI:${valorIzq}%`, 190);
+    doc.text(Texto, 10, posY);
+    posY += Texto.length * 10;
 
     const lineasInfo = doc.splitTextToSize(info, 190);
     doc.text(lineasInfo, 10, posY);
@@ -112,7 +82,6 @@ function App() {
         onChange={(e) => setNombre(e.target.value)}
       />
 
-      {/* - - - - - - - - - - - - --  */}
 
       <div class="flex-container">
   <div class="der">
