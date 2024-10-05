@@ -65,7 +65,6 @@ function App() {
     doc.text(`Miopia/Hipermetropia Antes (Ojo Izquierdo): ${eVi}`, 10, posY);
     posY += 10;
 
-    doc.addImage("../public/gaffasLogo.jpg", 140, 10)
 
     doc.text(`Astigmatismo Antes (Ojo Izquierdo): ${cVi}`, 10, posY);
     posY += 10;
